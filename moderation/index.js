@@ -11,7 +11,7 @@ app.post('/events', async (req, res) => {
     if(type === 'CommentCreated') { 
         const status = data.content.includes('orange') ? 'Rejected' : 'Approved';
         
-        await axios.post('http://localhost:4005/events', {
+        await axios.post('http://event-bus-srv:4005/events', {
             type: 'CommentModerated',
             data : {
                 id: data.id,
@@ -27,6 +27,7 @@ app.post('/events', async (req, res) => {
     res.send({});
 });
 
-app.listen(4003, () => {    
+app.listen(4003, () => {  
+ console.log('updated service names');  
  console.log('listening on http://localhost:4003');
 });
